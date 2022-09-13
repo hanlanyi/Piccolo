@@ -34,6 +34,10 @@ namespace Pilot
         {
             case States::_idle:
                 /**** [0] ****/
+                if (is_moving)
+                {
+                    m_state = States::_walk_start;
+                }
                 break;
             case States::_walk_start:
                 /**** [1] ****/
