@@ -38,24 +38,57 @@ namespace Pilot
                 {
                     m_state = States::_walk_start;
                 }
+                else if (is_jumping)
+                {
+                    m_state = States::_jump_start_from_idle;
+                }
                 break;
             case States::_walk_start:
                 /**** [1] ****/
+                if (is_clip_finish)
+                {
+                    m_state = States::_walk_run;
+                }
                 break;
             case States::_walk_run:
                 /**** [2] ****/
+                start_walk_end = true;
+                if (start_walk_end && is_clip_finish)
+                {
+                    m_state = States::_walk_stop;
+                }  
+                else if (!is_moving)
+                {
+                    m_state = States::_idle;
+                }
                 break;
             case States::_walk_stop:
                 /**** [3] ****/
+                if (!is_moving && is_clip_finish)
+                {
+                    m_state = States::_idle;
+                }
                 break;
             case States::_jump_start_from_idle:
                 /**** [4] ****/
+                if (is_clip_finish)
+                {
+                    m_state = States::_jump_loop_from_idle;
+                }
                 break;
             case States::_jump_loop_from_idle:
                 /**** [5] ****/
+                if (!is_jumping)
+                {
+                    m_state = States::_jump_end_from_idle;
+                }
                 break;
             case States::_jump_end_from_idle:
                 /**** [6] ****/
+                if (is_clip_finish)
+                {
+                    m_state = States::_idle;
+                }
                 break;
             case States::_jump_start_from_walk_run:
                 /**** [7] ****/
