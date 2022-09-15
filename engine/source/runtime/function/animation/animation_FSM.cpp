@@ -61,6 +61,10 @@ namespace Pilot
                 {
                     m_state = States::_idle;
                 }
+                else if (is_jumping)
+                {
+                    m_state = States::_jump_start_from_walk_run;
+                }
                 break;
             case States::_walk_stop:
                 /**** [3] ****/
@@ -92,12 +96,24 @@ namespace Pilot
                 break;
             case States::_jump_start_from_walk_run:
                 /**** [7] ****/
+                if (is_clip_finish)
+                {
+                    m_state = States::_jump_loop_from_walk_run;
+                }
                 break;
             case States::_jump_loop_from_walk_run:
                 /**** [8] ****/
+                if (!is_jumping)
+                {
+                    m_state = States::_jump_end_from_walk_run;
+                }
                 break;
             case States::_jump_end_from_walk_run:
                 /**** [9] ****/
+                if (is_clip_finish)
+                {
+                    m_state = States::_walk_run;
+                }
                 break;
             default:
                 break;
