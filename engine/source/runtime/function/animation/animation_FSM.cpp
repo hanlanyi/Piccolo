@@ -52,6 +52,7 @@ namespace Pilot
                 break;
             case States::_walk_run:
                 /**** [2] ****/
+                start_walk_end = true;
                 if (start_walk_end && is_clip_finish)
                 {
                     m_state = States::_walk_stop;
