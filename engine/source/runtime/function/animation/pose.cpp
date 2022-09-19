@@ -64,7 +64,8 @@ void AnimationPose::blend(const AnimationPose& pose)
         float sum_weight = 10;
         if (sum_weight != 0)
         {
-            // float cur_weight = ;
+            // should change with the for loop
+            float cur_weight = i / sum_weight;
             // m_weight.m_blend_weight[i] =
             // bone_trans_one.m_position  =
             // bone_trans_one.m_scale     =
