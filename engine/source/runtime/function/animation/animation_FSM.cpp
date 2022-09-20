@@ -57,6 +57,10 @@ namespace Pilot
                 {
                     m_state = States::_walk_stop;
                 }  
+                if (is_moving && is_clip_finish)
+                {
+                    m_state = States::_walk_start;
+                }
                 if (!is_moving)
                 {
                     m_state = States::_idle;
