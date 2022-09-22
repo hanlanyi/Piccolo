@@ -76,6 +76,3 @@ void AnimationPose::blend(const AnimationPose& pose)
         }
     }
 }
-
-
-
