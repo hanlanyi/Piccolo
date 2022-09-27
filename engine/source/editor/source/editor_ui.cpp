@@ -154,6 +154,25 @@ namespace Piccolo
                 }
             }
         };
+        // TODO: Add a UI creater with bool
+        m_editor_ui_creator["bool"] = [this](const std::string& name, void* value_ptr) -> void {
+            if (g_node_depth == -1)
+            {
+                std::string label = "##" + name;
+                ImGui::Text("%s", name.c_str());
+                ImGui::SameLine();
+                ImGui::InputFloat(label.c_str(), static_cast<float*>(value_ptr));
+            }
+            else
+            {
+                if (g_editor_node_state_array[g_node_depth].second)
+                {
+                    std::string full_label = "##" + getLeafUINodeParentLabel() + name;
+                    ImGui::Text("%s", (name + ":").c_str());
+                    ImGui::InputFloat(full_label.c_str(), static_cast<float*>(value_ptr));
+                }
+            }
+        };
         m_editor_ui_creator["Vector3"] = [this](const std::string& name, void* value_ptr) -> void {
             Vector3* vec_ptr = static_cast<Vector3*>(value_ptr);
             float    val[3]  = {vec_ptr->x, vec_ptr->y, vec_ptr->z};
@@ -387,7 +406,6 @@ namespace Piccolo
 
     void EditorUI::createClassUI(Reflection::ReflectionInstance& instance)
     {
-        // TODO: Add a feature in the UI Window
         Reflection::ReflectionInstance* reflection_instance;
         int count = instance.m_meta.getBaseClassReflectionInstanceList(reflection_instance, instance.m_instance);
         for (int index = 0; index < count; index++)
@@ -402,7 +420,6 @@ namespace Piccolo
 
     void EditorUI::createLeafNodeUI(Reflection::ReflectionInstance& instance)
     {
-        # TODO: Add a feature here
         Reflection::FieldAccessor* fields;
         int                        fields_count = instance.m_meta.getFieldsList(fields);
 
