@@ -25,6 +25,12 @@
         },
         {
             "$context": {
+                "if_test": true
+            },
+            "$typeName": "TestComponent"
+        },
+        {
+            "$context": {
                 "animation_res": {
                     "blend_state": {
                         "blend_anim_skel_map_path": [
