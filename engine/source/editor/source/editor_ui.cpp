@@ -161,7 +161,7 @@ namespace Piccolo
                 std::string label = "##" + name;
                 ImGui::Text("%s", name.c_str());
                 ImGui::SameLine();
-                ImGui::InputFloat(label.c_str(), static_cast<float*>(value_ptr));
+                ImGui::Checkbox(label.c_str(), static_cast<bool*>(value_ptr));
             }
             else
             {
@@ -169,7 +169,7 @@ namespace Piccolo
                 {
                     std::string full_label = "##" + getLeafUINodeParentLabel() + name;
                     ImGui::Text("%s", (name + ":").c_str());
-                    ImGui::InputFloat(full_label.c_str(), static_cast<float*>(value_ptr));
+                    ImGui::Checkbox(full_label.c_str(), static_cast<bool*>(value_ptr));
                 }
             }
         };
