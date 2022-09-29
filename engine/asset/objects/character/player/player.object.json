@@ -25,7 +25,9 @@
         },
         {
             "$context": {
-                "if_test": true
+                "test_res": {
+                    "if_test": true
+                }
             },
             "$typeName": "TestComponent"
         },
