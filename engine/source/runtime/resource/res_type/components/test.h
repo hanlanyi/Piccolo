@@ -10,6 +10,6 @@ namespace Piccolo
         REFLECTION_BODY(TestComponentRes);
 
     public:
-        bool t_test;
+        bool t_test = true;
     };
 } // namespace Piccolo
